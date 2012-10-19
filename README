@@ -1,0 +1,39 @@
+This is my model to work in an effective way with enumeration in C++.
+
+It defines some macros which in automaticly work either with numeric value or
+with the name of enumerations.
+
+It will look similar to:
+
+struct Transport {
+   enum _v { None = -1, TCP, STCP, UDP };
+
+   auto_declare_enum (Transport)
+};
+
+Some more lines and you will be able to write C++ like:
+
+Transport::_v tt = Transport::UDP;
+
+
+......
+
+
+const char* name = Transport::getEnumName ();
+
+....
+
+string nameEx = Transport::getEnumNameEx ();
+
+...
+
+Tranport::_v transport = Transport::getEnumValue ("UDP");
+
+....
+
+
+
+
+
+
+
