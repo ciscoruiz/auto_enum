@@ -8,7 +8,7 @@ It will look similar to:
 struct Transport {
    enum _v { None = -1, TCP, STCP, UDP };
 
-   auto_declare_enum (Transport)
+   auto_enum_declare (Transport)
 };
 
 Some more lines and you will be able to write C++ like:
@@ -19,11 +19,11 @@ Transport::_v tt = Transport::UDP;
 ......
 
 
-const char* name = Transport::getEnumName ();
+const char* name = Transport::getEnumName (Transport::STCP);
 
 ....
 
-string nameEx = Transport::getEnumNameEx ();
+string nameEx = Transport::getEnumNameEx (tt);
 
 ...
 
