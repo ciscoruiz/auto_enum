@@ -2,8 +2,8 @@
 #define _AUTO_ENUM_H_
 
 #include <string.h>
-#include <exception>
 #include <string>
+#include <exception>
 
 /**
  * \page declare_enum
@@ -37,12 +37,12 @@
  * \ref assign_enum
  * \ref item_enum
  */
-#define auto_enum_declare(name) \
-   static const char* literal []; \
+#define auto_enum_declare(_name) \
+   static const char* __literal []; \
    \
    static _v enumValue (const char* str) throw () { \
-      for (int ii = 0; literal [ii] != NULL; ++ ii) { \
-         if (strcasecmp (str, literal [ii]) == 0) \
+      for (int ii = 0; __literal [ii] != NULL; ++ ii) { \
+         if (strcasecmp (str, __literal [ii]) == 0) \
             return (_v) ii; \
       } \
       return None; \
@@ -52,13 +52,13 @@
    \
    static _v enumValueEx (const char* str) throw (std::invalid_argument) { \
       if (str == NULL) { \
-         std::string msg (#name); \
+         std::string msg (#_name); \
          msg += "::enumValueEx | String can not be null"; \
          throw std::invalid_argument (msg); \
       } \
       _v result = enumValue (str); \
       if (result == None) { \
-         std::string msg (#name); \
+         std::string msg (#_name); \
          msg += " | Value: '"; \
          msg += str; \
          msg += "' is not valid | Valid values: "; \
@@ -70,12 +70,12 @@
    \
    static _v enumValueEx (const std::string& str) throw (std::invalid_argument) { return enumValueEx (str.c_str ()); } \
    \
-   static const char* enumName (const _v v) throw () { return (v != None) ? literal [v]: NULL; } \
+   static const char* enumName (const _v v) throw () { return (v != None) ? __literal [v]: NULL; } \
    \
    static std::string enumNameEx (const _v v) throw (std::invalid_argument) { \
       const char* name = enumName (v); \
       if (name == NULL) { \
-         std::string msg (#name); \
+         std::string msg (#_name); \
          msg += " does not have an assigned value"; \
          throw std::invalid_argument (msg); \
       }\
@@ -84,9 +84,9 @@
    \
    static std::string asList () throw () {\
       std::string result;\
-      for (register int ii = 0; literal [ii] != NULL; ++ ii) { \
+      for (int ii = 0; __literal [ii] != NULL; ++ ii) { \
          if (ii > 1) result += ' '; \
-         result += "'"; result += literal [ii]; result += "'"; \
+         result += "'"; result += __literal [ii]; result += "'"; \
       } \
       return result; \
    }
@@ -106,12 +106,12 @@
  * \ref auto_enum_declare
  * \warning You must indicate the end of the list by mean the of NULL value.
  */
-#define auto_enum_assign(name) const char* name::literal []
+#define auto_enum_assign(_name) const char* _name::__literal []
 
 /**
  * \page item_enum
- * Accesses to the literal defined by the enumeration and the position received as parameter.
+ * Accesses to the __literal defined by the enumeration and the position received as parameter.
  */
-#define auto_enum_access(name,ii) name::literal[ii]
+#define auto_enum_access(_name,ii) _name::__literal[ii]
 
 #endif

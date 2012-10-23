@@ -28,8 +28,31 @@
 
 struct Transport {
    enum _v { None = -1, TCP, UDP, STCP };
-   auto_enum_declare(Trasnport);
+   auto_enum_declare(Transport);
 };
+
+namespace foo {
+
+namespace goo {
+
+class Abstract {
+public:
+   struct Status {
+      enum _v { None = -1, WaitMessage, ReadHeader, WaitEndOfHeader, WaitChunkSize, ReadChunkSize, ReadChunkData, ReadChunkTrailers };
+
+      auto_enum_declare(Status);
+   };
+};
+
+}
+}
+
+using namespace foo::goo;
+
+auto_enum_assign(Abstract::Status) = {
+   "WaitMessage", "ReadHeader", "WaitEndOfHeader", "WaitChunkSize", "ReadChunkSize", "ReadChunkData", "ReadChunkTrailers", 0
+};
+
 
 auto_enum_assign(Transport) = { "tcp", "udp", "stcp", NULL };
 
