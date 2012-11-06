@@ -1,4 +1,6 @@
-result = Program ('auto_enum_unittest', ['auto_enum_test.cc', 'main_test.cc'])
+env = Environment (CPPPATH=['..'])
+
+result = env.Program ('auto_enum_unittest', ['auto_enum_test.cc', 'main_test.cc'])
 
 Return ('result')
 
