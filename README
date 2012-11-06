@@ -31,9 +31,9 @@ Tranport::_v transport = Transport::getEnumValue ("UDP");
 
 ....
 
+you can run 'scons' to install the headers /usr/local/include, It will be installed if all test cases are passed.
 
-
-
+You can uninstall the headers with 'scons uninstall'
 
 
 

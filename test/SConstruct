@@ -1,3 +1,10 @@
-Program ('auto_enum_unittest', ['auto_enum_test.cc', 'main_test.cc'])
+result = Program ('auto_enum_unittest', ['auto_enum_test.cc', 'main_test.cc'])
+
+Return ('result')
+
+
+
+
+
 
 
