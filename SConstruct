@@ -15,7 +15,7 @@ result = SConscript (['test/SConstruct'])
 # It must generate unit test before doing anything on include directory
 Depends (target, result)
 
-test_unit = Builder (action = "test/auto_enum_unittest > $TARGET")
+test_unit = Builder (action = '%s > $TARGET' % result [0])
 
 # It must run and pass unit test before installing 
 env ['BUILDERS']['RunTestUnit'] = test_unit
