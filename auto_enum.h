@@ -3,7 +3,7 @@
 
 #include <string.h>
 #include <string>
-#include <exception>
+#include <stdexcept>
 
 /**
  * \page declare_enum
